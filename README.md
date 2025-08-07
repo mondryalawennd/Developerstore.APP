@@ -1,59 +1,82 @@
-# DeveloperstoreAPP
+# 📦 DeveloperStore App (Frontend)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+Aplicação Angular para consumir e gerenciar o fluxo da API [DeveloperStore](https://github.com/seu-usuario/DeveloperStore), construída com foco em boas práticas de desenvolvimento, responsividade e integração com APIs RESTful.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Funcionalidades
 
-```bash
-ng serve
-```
+- ✅ Visualização de vendas cadastradas  
+- ➕ Criação de nova venda  
+- ✏️ Edição e cancelamento de vendas existentes  
+- 📉 Cálculo automático de descontos por item  
+- 🔐 Autenticação e controle de acesso (JWT)  
+- 🌐 Integração com a API via HTTPClient  
+- 🧪 Validações de formulário com mensagens amigáveis  
+- 📱 Interface responsiva com Bootstrap 5  
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🛠️ Tecnologias e Bibliotecas
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- [Angular 20](https://angular.io/)
+- [Bootstrap 5](https://getbootstrap.com/) + [Bootstrap Icons](https://icons.getbootstrap.com/)
+- [RxJS](https://rxjs.dev/)
+- [Express](https://expressjs.com/) (para SSR)
+- TypeScript
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📋 Pré-requisitos
 
-```bash
-ng generate --help
-```
+- Node.js `v20+`
+- Angular CLI
+- API DeveloperStore rodando localmente: `https://localhost:7210`
+- PostgreSQL configurado para a API
+- Git
 
-## Building
+---
 
-To build the project run:
+## ⚙️ Como rodar o projeto
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### 1. Clone o repositório
 
 ```bash
-ng e2e
-```
+git clone https://github.com/seu-usuario/developerstore-app.git
+cd developerstore-app
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## ⚙️ Como rodar o projeto
 
-## Additional Resources
+1. **Clone o repositório:**
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+git clone https://github.com/seu-usuario/developerstore-app.git
+cd developerstore-app
+
+2. **Instale as dependências:**
+
+npm install
+
+3. **Execute o servidor de desenvolvimento:**
+
+npm start
+
+Abra no navegador: http://localhost:4200
+
+
+ **✅ Scripts disponíveis **
+
+  Comando	Descrição
+  npm start	Inicia o servidor Angular
+  npm run build	Compila o projeto
+  npm test	Executa testes unitários
+  npm run serve:ssr:DeveloperstoreAPP	Roda com SSR via Express
+
+**🔐 Autenticação e Segurança**
+
+A aplicação consome um token JWT emitido pela API.
+Após login, o token é armazenado e usado em requisições autenticadas.
+Rotas protegidas bloqueiam usuários não autenticados.
+
+**🤝 Contribuindo**
+Pull requests são bem-vindos! Para mudanças significativas, abra uma issue primeiro para discutirmos a proposta.
