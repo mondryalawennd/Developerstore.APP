@@ -45,26 +45,18 @@ Aplicação Angular para consumir e gerenciar o fluxo da API [DeveloperStore](ht
 git clone https://github.com/seu-usuario/developerstore-app.git
 cd developerstore-app
 
-## ⚙️ Como rodar o projeto
-
-1. **Clone o repositório:**
-
-```bash
-git clone https://github.com/seu-usuario/developerstore-app.git
-cd developerstore-app
-
-2. **Instale as dependências:**
+2. Instale as dependências:
 
 npm install
 
-3. **Execute o servidor de desenvolvimento:**
+3. Execute o servidor de desenvolvimento:
 
 npm start
 
 Abra no navegador: http://localhost:4200
 
 
- **✅ Scripts disponíveis **
+ ✅ Scripts disponíveis 
 
   Comando	Descrição
   npm start	Inicia o servidor Angular
@@ -72,11 +64,12 @@ Abra no navegador: http://localhost:4200
   npm test	Executa testes unitários
   npm run serve:ssr:DeveloperstoreAPP	Roda com SSR via Express
 
-**🔐 Autenticação e Segurança**
+🔐 Autenticação e Segurança
 
-A aplicação consome um token JWT emitido pela API.
-Após login, o token é armazenado e usado em requisições autenticadas.
-Rotas protegidas bloqueiam usuários não autenticados.
+  A aplicação consome um token JWT emitido pela API.
+  Após login, o token é armazenado e usado em requisições autenticadas.
+  Rotas protegidas bloqueiam usuários não autenticados.
 
-**🤝 Contribuindo**
-Pull requests são bem-vindos! Para mudanças significativas, abra uma issue primeiro para discutirmos a proposta.
+🤝 Contribuindo
+
+  Pull requests são bem-vindos! Para mudanças significativas, abra uma issue primeiro para discutirmos a proposta.
