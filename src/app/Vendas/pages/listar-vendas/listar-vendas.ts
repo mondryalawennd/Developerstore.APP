@@ -4,22 +4,24 @@ import { VendaService } from '../../services/vendaService';
 import { Venda } from '../../models/venda';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
   selector: 'app-listar-vendas',
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule,RouterLink,FormsModule],
   templateUrl: './listar-vendas.html',
   styleUrl: './listar-vendas.scss'
 })
 export class ListarVendas implements OnInit {
-  vendas: Venda[] = [];
-  carregando: boolean = true;
-
-  constructor(private router: Router, private vendaService: VendaService, private cdRef: ChangeDetectorRef) {}
-
-  ngOnInit(): void {
+   constructor(private router: Router, private vendaService: VendaService, private cdRef: ChangeDetectorRef) {}
+   
+   vendas: Venda[] = [];
+   carregando: boolean = true;
+  
+   ngOnInit(): void {
    setTimeout(() => this.loadVendas(), 0);
+   this.loadVendas();
   }
 
   loadVendas(): void {
@@ -35,7 +37,7 @@ export class ListarVendas implements OnInit {
       }
     });
   }
-  
+
   editarVenda(id: number) {
    this.router.navigate(['/criar-venda', id]);
    }

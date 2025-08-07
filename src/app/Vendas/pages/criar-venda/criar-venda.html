@@ -118,5 +118,12 @@
 </div>
 <div class="d-flex justify-content-end">
          <button *ngIf="!novaVenda.id" class="btn btn-primary" (click)="criarVenda()">Salvar</button>
-         <button *ngIf="novaVenda.id" class="btn btn-warning" (click)="alterarVenda()">Alterar</button>
+          <div class="mb-2  p-2  form-group mb-0">
+          <button *ngIf="novaVenda.id" class="btn btn-warning" (click)="alterarVenda()">Alterar</button>
+         </div>
+      
+         <div class="mb-2 p-2 form-group mb-0">
+            <button *ngIf="novaVenda.id" class="btn btn-danger" (click)="deletarVenda()">Excluir</button>
+         </div>
+       
       </div>

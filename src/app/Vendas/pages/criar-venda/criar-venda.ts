@@ -8,11 +8,12 @@ import { FilialService } from '../../services/filialService';
 import { ProdutoService } from '../../services/produtoService';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { NgForOf } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-criar-venda',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgForOf],
   templateUrl: './criar-venda.html',
   styleUrl: './criar-venda.scss'
 })
@@ -337,7 +338,9 @@ export class CriarVenda  implements OnInit {
       };
       //this.carregarNumeroVenda();
       this.cdRef.detectChanges();
-      this.router.navigate(['/listar-vendas']);
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/listar-vendas']);
+      });
     },
     error: (err) => {
       const msgErro = err.error?.message || 'Erro ao alterar venda.';
@@ -345,6 +348,20 @@ export class CriarVenda  implements OnInit {
     }
   });
 }
+
+deletarVenda(): void {
+        this.vendaService.deletarVenda(this.novaVenda.id).subscribe({
+          next: () => {
+             alert('Venda excluída com sucesso!');
+            this.router.navigate(['/listar-venda']); 
+          },
+          error: (err) => {
+            console.error('Erro ao excluir venda: ', err);
+            alert('Erro ao excluir avenda!');
+          }
+        });
+  }
+
 
 
 }
