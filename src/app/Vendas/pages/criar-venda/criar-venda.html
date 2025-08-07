@@ -1,0 +1,122 @@
+<!-- Título -->
+<h1 class="text-left mb-4">Nova Venda</h1>
+
+<div class="card mb-4">
+
+ <div class="card-body">
+  <div class="row mb-3">
+    <div class="col-md-2">
+      <label for="numeroVenda" class="form-label">Nº da Venda:</label>
+      <input id="numeroVenda" type="text" class="form-control" [value]="novaVenda.numeroVenda" disabled>
+    </div>
+    <div class="col-md-2">
+      <label for="dataVenda" class="form-label">Data da Venda:</label>
+      <input id="dataVenda" type="text" class="form-control" [value]="novaVenda.dataVenda | date:'dd/MM/yyyy'" disabled>
+    </div>
+    <div class="col-md-3">
+      <label for="cliente" class="form-label">Cliente:</label>
+      <select id="cliente" class="form-select" [(ngModel)]="novaVenda.clienteId" name="cliente">
+        <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nome }}</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="filial" class="form-label">Filial:</label>
+      <select id="filial" class="form-select" [(ngModel)]="novaVenda.filialId" name="filial">
+        <option *ngFor="let filial of filiais" [value]="filial.id">{{ filial.nome }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2 d-flex align-items-center mt-4" *ngIf="novaVenda.id">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="canceladoVenda" [(ngModel)]="novaVenda.cancelado" name="canceladoVenda">
+        <label class="form-check-label" for="canceladoVenda">Cancelada</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="card mb-4">
+  <div *ngIf="erroItem" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+      {{ erroItem }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="erroItem = ''"></button>
+  </div>
+
+  <div class="card-body">    
+    <div class="row g-3 align-items-end">
+      <div class="col-md-5">
+        <label for="produto" class="form-label">Produto:</label>
+        <select id="produto"  class="form-select" [(ngModel)]="novoItem.produtoId" (change)="onSelecionarProduto(novoItem.produtoId)" name="produto" >
+          <option *ngFor="let produto of produtos" [value]="produto.id">{{ produto.nome }}</option>
+        </select>
+      </div>
+      
+      <div class="col-md-2">
+        <label for="quantidade" class="form-label">Quantidade:</label>
+        <input id="quantidade" type="number" class="form-control"  (blur)="onQuantidadeBlur()" [(ngModel)]="novoItem.quantidade" name="quantidade">
+      </div>
+      <div class="col-md-2">
+        <label for="preco" class="form-label">Preço Unitário:</label>
+        <input id="preco" type="text" class="form-control" [value]="novoItem.precoUnitario | currency:'BRL'" disabled>
+      </div>
+      <div class="col-md-2">
+        <label for="desconto" class="form-label">Desconto (%):</label>
+        <input id="desconto" type="number" class="form-control" [(ngModel)]="novoItem.desconto" name="desconto" style="width: 180px;">
+      </div>
+      
+      <div class="col-md-1 text-end px-3">
+        <button class="btn btn-success" (click)="adicionarItem()" title="Adicionar">+</button>     
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row g-4 align-items-end">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Desconto (%)</th>
+                <th>Total</th>
+                <th>Cancelado</th> 
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of novaVenda.itens; let i = index">
+                <td style="text-align: center;">{{ getNomeProduto(item.produtoId) }}</td>
+                <td style="text-align: center;">{{ item.quantidade }}</td>
+                <td style="text-align: center;">{{ item.precoUnitario | currency:'BRL' }}</td>
+                <td style="text-align: center;">{{ item.desconto }}%</td>
+                <td style="text-align: center;">{{ (item.quantidade * item.precoUnitario * (1 - item.desconto / 100)) | currency:'BRL' }}</td>
+                <td style="text-align: center;">
+                  <input  type="checkbox" [(ngModel)]="item.cancelado" [disabled]="!novaVenda.id" />
+                </td>
+                <td style="text-align: center;">
+                  <button class="btn btn-danger btn-sm" (click)="removerItem(i)" title="Remover">&times;</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+         <div class="mt-2 d-flex justify-content-end align-items-center">
+            <label for="valorTotal" class="me-2 mb-2">Valor Total da Venda:</label>
+            <div class="mb-2 form-group mb-0">
+              <input id="valorTotal" type="text" style="width: 130px;" class="form-control text-end" [value]="novaVenda.valorTotal | currency: 'BRL':'symbol'" disabled>
+            </div>
+          </div>
+      </div>
+     
+
+    </div>
+     
+  </div>
+
+
+
+</div>
+<div class="d-flex justify-content-end">
+         <button *ngIf="!novaVenda.id" class="btn btn-primary" (click)="criarVenda()">Salvar</button>
+         <button *ngIf="novaVenda.id" class="btn btn-warning" (click)="alterarVenda()">Alterar</button>
+      </div>

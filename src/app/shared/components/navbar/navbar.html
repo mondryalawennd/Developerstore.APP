@@ -1,0 +1,23 @@
+<nav class="sidebar">
+  <hr />
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a href="#" class="nav-link active" aria-current="page">
+        <svg class="bi" width="16" height="16" fill="currentColor"><use xlink:href="#home"/></svg>
+        Início
+      </a>
+    </li>
+    <hr />
+    <li>
+      <a class="nav-link" routerLink="/listar-vendas">
+      <i class="bi bi-grid"></i>
+        Venda
+      </a>
+    </li>
+  </ul>
+  <hr />
+</nav>
+
+ <div class="content">
+  <router-outlet></router-outlet>
+</div>

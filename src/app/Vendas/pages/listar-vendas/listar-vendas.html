@@ -1,0 +1,42 @@
+<div class="container my-4" *ngIf="!carregando; else loading">
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered shadow-sm rounded">
+      <thead class="table-light text-center">
+        <tr>
+          <th>Número da Venda</th>
+          <th>Cliente</th>
+          <th>Data</th>
+          <th>Valor Total</th>
+          <th>Filial</th>
+          <th>Cancelado</th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr *ngFor="let venda of vendas" (click)="editarVenda(venda.id)" style="cursor:pointer;">
+          <td>{{ venda.numeroVenda }}</td>
+          <td>{{ venda.clienteNome }}</td>
+          <td>{{ venda.dataVenda | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ venda.valorTotal | currency:'BRL':'symbol':'1.2-2' }}</td>
+          <td>{{ venda.filialNome }}</td>
+         <td>{{ venda.cancelado ? 'Sim' : 'Não' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-end align-items-left">
+   <div class="p-5 d-flex justify-content-end">
+    <a class="btn btn-success" routerLink="/criar-venda">
+      <i class="bi bi-plus-lg me-2"></i> Nova Venda
+    </a>
+  </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <div class="d-flex flex-column align-items-center justify-content-center" style="height: 300px;">
+    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    <p class="mt-3 fs-5 text-muted">Carregando vendas...</p>
+  </div>
+</ng-template>
